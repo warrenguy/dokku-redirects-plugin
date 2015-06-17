@@ -10,7 +10,13 @@ server {
   listen      [::]:80;
   listen      80;
   server_name $source;
-  return      301 http://$destination\$request_uri;
+  return      301 https://$source\$request_uri;
+}
+server {
+  listen      [::]:443 ssl spdy;
+  listen      443 ssl spdy;
+  server_name $source;
+  return      301 https://$destination\$request_uri;
 }
 EOF
 }
